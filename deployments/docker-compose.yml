@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:latest
+    container_name: my-postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../db:/var/lib/postgresql/data
+      - ../migrations:/backup
+    networks:
+      - user-cart-network
+
+  python-app:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=postgres
+      - DB_MAX_CONNECTIONS=20
+      - DB_IDLE_TIMEOUT=30000
+      - DB_CONNECTION_TIMEOUT=2000
+    depends_on:
+      - db
+    working_dir: /app
+    networks:
+      - user-cart-network
+
+networks:
+  user-cart-network:
+    driver: bridge
+
