@@ -32,6 +32,28 @@ class UserCreateView(generics.CreateAPIView):
 #     permission_classes = [permissions.AllowAny]
 
 
+class CheckoutView(APIView):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        cart_items = CartItem.objects.filter(user=user, status=0)
+
+        if not cart_items.exists():
+            return Response({'message': 'No items to check out'}, status=400)
+
+        total_price = sum(item.total_price for item in cart_items)
+        
+        updated_count = cart_items.update(status=1)
+
+        return Response({
+            'message': 'Checkout successful',
+            'items_checked_out': updated_count,
+            'total_price': float(total_price)
+        })
+
+
 class ProductListView(APIView):
 
     def get_permissions(self):
