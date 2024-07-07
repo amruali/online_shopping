@@ -1,0 +1,23 @@
+deployments
+
+db
+
+# Ignore logs
+logs
+
+# Ignore environment variable files
+.env
+
+# Ignore Docker files
+Dockerfile
+.dockerignore
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore IDE/editor files
+.vscode
+
+# Ignore database files
+db.sqlite3
