@@ -1,0 +1,72 @@
+POST http://localhost:8001/api/v1/register/ 
+Content-Type: application/json'
+{
+    "username": "saeed",
+    "email": "saeed@damen.com.eg",
+    "password": "saeed"
+}
+
+
+##### @name login
+curl -X POST http://127.0.0.1:8001/api/v1/token/ -H "Content-Type: application/json" -d '{"username": "saeed", "password": "saeed"}'
+
+######
+
+@authToken = {{login.response.body.access}}
+
+
+##### GET ALL PRODUCTS ######
+
+curl -X GET http://127.0.0.1:8001/api/v1/products/
+
+
+######### Add product
+
+POST http://127.0.0.1:8001/api/v1/products
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDQwMTI4LCJqdGkiOiJkOWNiMjJlY2M4MGI0OGUwODNjOGExYzNkMzg3MGM3ZSIsInVzZXJfaWQiOjN9.8LHx-hxmsVOVajBog8eUdwaVa-8VHrwiywhtK3kcQjg
+Content-Type: application/json
+
+{
+    "name": "Mercedes",
+    "price": 5000
+}
+
+#### Edit Product Price
+PATCH http://127.0.0.1:8001/api/v1/products/1/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMjczNjE3LCJqdGkiOiJjMTNhMWZiY2JhNDA0ZGMzOWQ4MjRiMWM1MmE2OWZkMyIsInVzZXJfaWQiOjN9.ACw-43JLK0f9ViO3mFaLbKB7ZR749ozJGeFczzHmF5k
+Content-Type: application/json"
+
+{
+    "price": 4000
+}
+
+
+##### Get Cart details
+
+GET http://127.0.0.1:8001/api/v1/cart
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDQwMTI4LCJqdGkiOiJkOWNiMjJlY2M4MGI0OGUwODNjOGExYzNkMzg3MGM3ZSIsInVzZXJfaWQiOjN9.8LHx-hxmsVOVajBog8eUdwaVa-8VHrwiywhtK3kcQjg
+
+##### Add Cart Item
+
+
+POST http://127.0.0.1:8001/api/v1/cart/
+Content-Type: application/json"
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDMyNDM1LCJpYXQiOjE3MjA0MzIxMzUsImp0aSI6IjA2Mzg2ZjQ0MGI3NjQxMjE5ZjU2NWExMjM0N2NkNmE3IiwidXNlcl9pZCI6Mn0.rPBVd0_ZqY6xox31QKZYrkgxH6p-tb8qQ4vuFvxL1AY
+
+{ "product": 1, "quantity": 2}
+
+##### Delete cart Item
+
+DELETE http://127.0.0.1:8001/api/v1/cart/1/
+Content-Type: application/json"
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDMyNDM1LCJpYXQiOjE3MjA0MzIxMzUsImp0aSI6IjA2Mzg2ZjQ0MGI3NjQxMjE5ZjU2NWExMjM0N2NkNmE3IiwidXNlcl9pZCI6Mn0.rPBVd0_ZqY6xox31QKZYrkgxH6p-tb8qQ4vuFvxL1AY
+
+
+##### Checkout
+
+POST http://127.0.0.1:8001/api/v1/checkout/
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDMyNDM1LCJpYXQiOjE3MjA0MzIxMzUsImp0aSI6IjA2Mzg2ZjQ0MGI3NjQxMjE5ZjU2NWExMjM0N2NkNmE3IiwidXNlcl9pZCI6Mn0.rPBVd0_ZqY6xox31QKZYrkgxH6p-tb8qQ4vuFvxL1AY
+
+
