@@ -98,9 +98,11 @@ $ cd deployments
 
 $ docker compose up -d --build
 
-later use can only use 
+## later use can only use 
 
 $ docker compose up -d
+
+```
 
 ## Upcoming
 - Products to be only added using authorized admin / super user
