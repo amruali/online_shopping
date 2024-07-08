@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -58,7 +59,7 @@ REST_FRAMEWORK = {
 }
 
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 
 SIMPLE_JWT = {
@@ -135,9 +136,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     # my-app middleware
-    'user_cart.middleware.CustomTrailingSlashMiddleware'
+    # 'user_cart.middleware.CustomTrailingSlashMiddleware'
+
 ]
 
 ROOT_URLCONF = 'online_shopping.urls'
@@ -145,7 +146,7 @@ ROOT_URLCONF = 'online_shopping.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add this line if 'templates' directory is not listed
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
