@@ -49,7 +49,7 @@ class CheckoutView(APIView):
 
         return Response({
             'message': 'Checkout successful',
-            'items_checked_out': updated_count,
+            # 'items_checked_out': updated_count,
             'total_price': float(total_price)
         })
 
@@ -101,7 +101,7 @@ class CartItemListView(APIView):
     permission_classes =  [permissions.IsAuthenticated]
 
     def get(self, request):
-        cart_items = CartItem.objects.filter(user=request.user)
+        cart_items = CartItem.objects.filter(user=request.user, status = 0)
         serializer = CartItemSerializer(cart_items, many=True)
         return Response(serializer.data)
 
